@@ -18,8 +18,8 @@ body {
 }
 
 .flipbook {
-    width: 1000px;
-    height: 600px;
+    width: 100vh;
+    height: 100vw;
     background: white;
 }
 
@@ -43,3 +43,6 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.11);
 }
 
+.flipbook .turn {
+    background: white;
+}
