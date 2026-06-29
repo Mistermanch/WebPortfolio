@@ -1,8 +1,15 @@
+@font-face {
+    font-family: "Mistermanch";
+    src: url("fonts/Mistermanch-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
 body{
 	overflow:hidden;
 	background-color:#fcfcfc;
 	margin:0;
 	padding:0;
+    font-family: Mistermanch, sans-serif;
 }
 
 .flipbook-viewport{
