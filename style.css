@@ -32,12 +32,12 @@ body {
 }
 
 .flipbook .hard {
-    background-color: orange;
+    background: orange;
     color: black;
 }
 
 .flipbook .page {
-    background-color: white;
+    background: white;
     opacity: 1;
     -webkit-backface-visibility: hidden; 
     backface-visibility: hidden; 
