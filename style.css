@@ -3,96 +3,32 @@
     src: url("fonts/Mistermanch-Regular.otf") format("opentype");
 }
 
-html, body {
-    height: 100%;
+*{
+    font-family: Mistermanch, sans-serif;
     margin: 0;
+    place-content: center;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    background: gray;
 }
 
-body {
+.flipbook {
+    width: 1000px;
+    height: 600px;
+}
+
+.flipbook .hard {
+    background: orange;
+    color: black;
+}
+
+.flipbook .page {
+    background: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #2c3e50;
-    font-family: "Mistermanch", Arial, sans-serif;
+    gap: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.11);
 }
-
-#flipbook {
-    width: 800px;
-    height: 500px;
-    margin: auto;
-}
-
-#flipbook .page{
-    width: 400px; /* half of book width (800) */
-    height: 500px; /* match book height */
-    background-color: white;
-    line-height: 500px;
-    font-size: 20px;
-    text-align: center;
-    font-family: "Mistermanch", Arial, sans-serif;
-}
-
-#flipbook .page-wrapper{
-    perspective: 2000px;
-}
-
-#flipbook .hard{
-    background:#ccc !important;
-    color:#333;
-    box-shadow: inset 0 0 5px #666;
-    font-weight:bold;
-}
-
-#flipbook .odd{
-    background: linear-gradient(to left, #fff 95%, #dadada 100%);
-    box-shadow: inset 0 0 5px #666;
-}
-
-#flipbook .even{
-    background: linear-gradient(to right, #fff 95%, #dadada 100%);
-    box-shadow: inset 0 0 5px #666;
-}
-
-#flipbook,
-.turn-page-wrapper,
-.turn-page {
-    overflow: visible !important;
-}
-
-
-.turn-viewport{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background: transparent !important;
-    overflow: visible !important;
-}
-
-.turn, #flipbook{
-    margin: 0 auto;
-    position: relative;
-    background: transparent !important;
-}
-
-.turn-page-wrapper,
-.turn-page{
-    overflow: visible !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-
-.turn .page{
-    background-clip: padding-box;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-}
-
-#flipbook .page {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
