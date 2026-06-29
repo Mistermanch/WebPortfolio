@@ -16,8 +16,7 @@ body {
 .flipbook {
     height: 100vh;
     width: 100vw;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+
 }
 
 .flipbook .hard {
