@@ -1,3 +1,1 @@
-$(".flipbook").turn({
-    autoCenter:true
-});
+$(".flipbook").turn();
