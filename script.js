@@ -1,13 +1,9 @@
 $(window).on("load", function () {
 
-  $("#book").turn({
-    width: 800,
-    height: 500,
-    autoCenter: true,
-    display: "double",
-    acceleration: true,
-    gradients: true,
-    elevation: 50
-  });
+    $("#flipbook").turn({
+        width: 400,
+        height: 300,
+        autoCenter: true
+    });
 
 });

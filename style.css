@@ -1,53 +1,71 @@
 @font-face {
-  font-family: "Mistermanch";
-  src: url("fonts/Mistermanch-Regular.otf") format("opentype");
+    font-family: "Mistermanch";
+    src: url("fonts/Mistermanch-Regular.otf") format("opentype");
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #2c3e50;
-  font-family: "Mistermanch", Arial, sans-serif;
-  overflow: hidden;
+body{
+    overflow:hidden;
 }
 
-.book {
-  width: 800px;
-  height: 500px;
-  overflow: hidden;
-  transform: translateZ(0);
+#flipbook{
+    width:400px;
+    height:300px;
+    font-family: "Mistermanch", Arial, sans-serif;
 }
 
-.page {
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  padding: 30px;
-  font-size: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  overflow: hidden;
-
-  /* 🔧 FIX ESQUINAS ROTAS */
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
+#flipbook .page{
+    width:400px;
+    height:300px;
+    background-color:white;
+    line-height:300px;
+    font-size:20px;
+    text-align:center;
+    font-family: "Mistermanch", Arial, sans-serif;
 }
 
-/* 🔧 FIX adicional Turn.js */
-.turn-page-wrapper {
-  overflow: visible !important;
+#flipbook .page-wrapper{
+    -webkit-perspective:2000px;
+    -moz-perspective:2000px;
+    -ms-perspective:2000px;
+    -o-perspective:2000px;
+    perspective:2000px;
 }
 
-.turn-page {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform-style: preserve-3d;
+#flipbook .hard{
+    background:#ccc !important;
+    color:#333;
+    -webkit-box-shadow:inset 0 0 5px #666;
+    -moz-box-shadow:inset 0 0 5px #666;
+    -o-box-shadow:inset 0 0 5px #666;
+    -ms-box-shadow:inset 0 0 5px #666;
+    box-shadow:inset 0 0 5px #666;
+    font-weight:bold;
+}
+
+#flipbook .odd{
+    background:-webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
+    background-image:-webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:-moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:-ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:-o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    -webkit-box-shadow:inset 0 0 5px #666;
+    -moz-box-shadow:inset 0 0 5px #666;
+    -o-box-shadow:inset 0 0 5px #666;
+    -ms-box-shadow:inset 0 0 5px #666;
+    box-shadow:inset 0 0 5px #666;
+}
+
+#flipbook .even{
+    background:-webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
+    background-image:-webkit-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:-moz-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:-ms-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:-o-linear-gradient(left, #fff 95%, #dadada 100%);
+    background-image:linear-gradient(left, #fff 95%, #dadada 100%);
+    -webkit-box-shadow:inset 0 0 5px #666;
+    -moz-box-shadow:inset 0 0 5px #666;
+    -o-box-shadow:inset 0 0 5px #666;
+    -ms-box-shadow:inset 0 0 5px #666;
+    box-shadow:inset 0 0 5px #666;
 }
