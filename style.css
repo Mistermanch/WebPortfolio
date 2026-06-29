@@ -6,8 +6,7 @@
 body {
     font-family: "Mistermanch";
     background-color: gray;
-    margin: 0;
-    padding: 0;
+    overflow: visible;
     display: grid;
     place-content: center;
     height: 100vh;
@@ -17,22 +16,20 @@ body {
 .flipbook {
     height: 100vh;
     width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 
 .flipbook .hard {
     background-color: orange;
     color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .flipbook .page {
     background-color: white;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-}
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    -webkit-backface-visibility: hidden; backface-visibility: hidden; will-change: transform; }
