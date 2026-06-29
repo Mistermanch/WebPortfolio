@@ -5,7 +5,7 @@
 
 
 body {
-    overflow: hidden;
+    overflow: visible;
     display: grid;
     place-content: center;
     height: 100vh;
