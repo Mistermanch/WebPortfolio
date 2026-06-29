@@ -69,3 +69,29 @@ body{
     -ms-box-shadow:inset 0 0 5px #666;
     box-shadow:inset 0 0 5px #666;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* 🔥 contenedor centrado */
+#flipbook {
+    margin: auto;
+}
+
+/* 📱 móvil */
+@media (max-width: 768px) {
+    #flipbook {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+
+    #flipbook .page {
+        width: 100vw !important;
+        height: 100vh !important;
+        line-height: normal;
+        font-size: 18px;
+    }
+}
