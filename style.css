@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
     font-family: "Mistermanch";
     src: url("fonts/Mistermanch-Regular.otf") format("opentype");
@@ -44,3 +45,42 @@ body {
     gap: 10px;
     border: 1px solid rgba(0, 0, 0, 0.11);
 }
+=======
+@font-face {
+    font-family: "Mistermanch";
+    src: url("fonts/Mistermanch-Regular.otf") format("opentype");
+}
+
+body {
+    font-family: "Mistermanch";
+    background-color: gray;
+    overflow: visible;
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.flipbook {
+    height: 100vh;
+    width: 100vw;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flipbook .hard {
+    background-color: orange;
+    color: black;
+}
+
+.flipbook .page {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    -webkit-backface-visibility: hidden; backface-visibility: hidden; will-change: transform; }
+
+>>>>>>> parent of a1b23d5 (discarded extra stuff)
