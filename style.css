@@ -20,7 +20,6 @@ body {
 .flipbook {
     width: 100vh;
     height: 100vw;
-    background: white;
 }
 
 .flipbook .hard {
@@ -33,6 +32,14 @@ body {
     box-shadow:inset 0 0 5px #666;
 }
 
+#flipbook .page-wrapper{
+    -webkit-perspective:2000px;
+    -moz-perspective:2000px;
+    -ms-perspective:2000px;
+    -o-perspective:2000px;
+    perspective:2000px;
+}
+
 .flipbook .page {
     background: white;
     display: flex;
@@ -43,6 +50,3 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.11);
 }
 
-.flipbook .turn {
-    background: white;
-}
