@@ -1,14 +1,17 @@
-$(function () {
+$(window).on("load", function () {
 
-    console.log("turn:", $.fn.turn);
+  $("#book").turn({
+    width: 800,
+    height: 500,
+    autoCenter: true,
+    display: "double",
+    acceleration: true,
+    gradients: true
+  });
 
-    $(".flipbook").turn({
-        width: 922,
-        height: 600,
-        autoCenter: true,
-        elevation: 50,
-        gradients: true,
-        display: "double"
-    });
+  setTimeout(function () {
+    $("#book").turn("size", 800, 500);
+    $("#book").turn("resize");
+  }, 300);
 
 });
