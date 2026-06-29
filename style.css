@@ -41,5 +41,4 @@ body {
     gap: 10px;
     border: 1px solid rgba(0, 0, 0, 0.11);
     -webkit-backface-visibility: hidden; backface-visibility: hidden; will-change: transform; }
-}
 
