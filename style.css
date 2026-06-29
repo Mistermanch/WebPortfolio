@@ -6,28 +6,30 @@
     font-display: swap;
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #2c3e50;
-  font-family: "Mistermanch", Arial, sans-serif;
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #eee;
+    font-family: sans-serif;
 }
 
-.book {
-  width: 800px;
-  height: 500px;
+.flipbook {
+    width: 922px;
+    height: 600px;
+
+    margin: auto;
 }
 
-.page {
-  background: #fff;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  padding: 30px;
-  font-size: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.flipbook > div {
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 40px;
 }
