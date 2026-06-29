@@ -1,18 +1,11 @@
 function getSize() {
+function getSize() {
     const w = $(window).width();
     const h = $(window).height();
 
-    if (w <= 768) {
-        return {
-            width: w,
-            height: h,
-            display: "single"
-        };
-    }
-
     return {
-        width: w * 0.9,
-        height: h * 0.85,
+        width: 800,
+        height: 500,
         display: "double"
     };
 }
@@ -26,6 +19,7 @@ function updateBook() {
 }
 
 $(window).on("load", function () {
+
     const size = getSize();
 
     $("#flipbook").turn({
