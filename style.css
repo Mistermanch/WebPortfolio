@@ -11,25 +11,18 @@ html, body {
     height: 100%;
     overflow: hidden;
     background: #eee;
-    font-family: sans-serif;
 }
 
 .flipbook {
     width: 922px;
     height: 600px;
-
     margin: auto;
 }
 
-
 .flipbook > div {
     background: white;
-
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    text-align: center;
-    padding: 40px;
+    font-size: 30px;
 }
