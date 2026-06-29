@@ -25,8 +25,12 @@ body {
 .flipbook .hard {
     background-color: orange;
     color: black;
+    align-items: center;
+    justify-content: center;
 }
 
 .flipbook .page {
     background-color: white;
+    align-items: center;
+    justify-content: center;
 }
