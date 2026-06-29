@@ -4,6 +4,7 @@
 }
 
 body {
+    font-family: Mistermanch;
     background-color: gray;
     overflow: visible;
     display: grid;
