@@ -1,5 +1,4 @@
 function getSize() {
-function getSize() {
     const w = $(window).width();
     const h = $(window).height();
 
@@ -28,7 +27,8 @@ $(window).on("load", function () {
         autoCenter: true,
         display: size.display,
         acceleration: true,
-        gradients: true
+        gradients: true,
+        elevation: 50
     });
 
     setTimeout(updateBook, 150);
