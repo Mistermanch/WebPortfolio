@@ -6,12 +6,8 @@ $(window).on("load", function () {
     autoCenter: true,
     display: "double",
     acceleration: true,
-    gradients: true
+    gradients: true,
+    elevation: 50
   });
-
-  setTimeout(function () {
-    $("#book").turn("size", 800, 500);
-    $("#book").turn("resize");
-  }, 300);
 
 });
