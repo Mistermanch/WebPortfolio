@@ -11,17 +11,25 @@ body {
     place-content: center;
     height: 100vh;
     width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
 .flipbook {
     height: 100vh;
     width: 100vw;
-
 }
 
 .flipbook .hard {
     background-color: orange;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100vh;
+    width: 100vw;
 }
 
 .flipbook .page {
@@ -32,4 +40,5 @@ body {
     align-items: center;
     gap: 10px;
     border: 1px solid rgba(0, 0, 0, 0.11);
-    -webkit-backface-visibility: hidden; backface-visibility: hidden; will-change: transform; }
+    -webkit-backface-visibility: hidden; backface-visibility: hidden; will-change: transform;
+}
