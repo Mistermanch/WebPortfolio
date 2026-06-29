@@ -1,56 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta name="viewport" content="width = 1050, user-scalable = no" />
-
-    <!--css-->
-    <link rel="stylesheet" href="style.css">
-  
-
-    <script type="text/javascript" src="libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="libraries/turn.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-
-    <title>MistermanchWebPortfolio</title>
+  <meta charset="UTF-8">
+  <title>Libro con Turn.js</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="flipbook-viewport">
-    <div class="container">
-        <div class="flipbook">
-            <div>
-                <h1>About Me</h1>
-                <p>Hi, I'm Mistermanch known by many as Mister, I'm a hobbyist maker and a student and I hope to sometime in the future make this my job.<br></p>
-            </div>
 
-            <div><h1>Projects</h1></div>
+  <div class="book" id="book">
+    <div class="page">Página 1</div>
+    <div class="page">Página 2</div>
+    <div class="page">Página 3</div>
+    <div class="page">Página 4</div>
+    <div class="page">Página 5</div>
+    <div class="page">Página 6</div>
+  </div>
 
-            <div><h1>Contact</h1></div>
-        </div>
-    </div>
-</div>
+  <script src="libraries/jquery.min.js"></script>
+  <script src="libraries/turn.min.js"></script>
+  <script src="script.js"></script>
 
-<!--premade official libray code-->
-<script>
-$(function () {
-
-    console.log("jQuery:", $);
-    console.log("turn:", $.fn.turn);
-
-    if (!$.fn.turn) {
-        console.error("turn.js no está cargado");
-        return;
-    }
-
-    $(".flipbook").turn({
-        width: 922,
-        height: 600,
-        elevation: 50,
-        gradients: true,
-        autoCenter: true
-    });
-
-});
-</script>
 </body>
 </html>
