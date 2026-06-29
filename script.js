@@ -1,41 +1,52 @@
-function resizeBook() {
+function getBookSize() {
 
-    const width = $(window).width();
-    const height = $(window).height();
+    const w = $(window).width();
+    const h = $(window).height();
 
-    let bookWidth, bookHeight, displayMode;
-
-    if (width <= 768) {
-        // 📱 móvil → 1 página
-        bookWidth = width;
-        bookHeight = height;
-        displayMode = "single";
-    } else {
-        // 💻 tablet/PC → doble página
-        bookWidth = width * 0.8;
-        bookHeight = height * 0.8;
-        displayMode = "double";
+    if (w <= 768) {
+        return {
+            width: w,
+            height: h,
+            display: "single"
+        };
     }
 
-    $("#flipbook").turn("size", bookWidth, bookHeight);
-    $("#flipbook").turn("display", displayMode);
+    return {
+        width: w * 0.9,
+        height: h * 0.9,
+        display: "double"
+    };
+}
+
+function renderBook() {
+
+    const size = getBookSize();
+
+    $("#flipbook").turn("size", size.width, size.height);
+    $("#flipbook").turn("display", size.display);
     $("#flipbook").turn("center");
+
 }
 
 $(window).on("load", function () {
 
+    const size = getBookSize();
+
     $("#flipbook").turn({
-        width: 800,
-        height: 600,
+        width: size.width,
+        height: size.height,
         autoCenter: true,
-        display: "double",
+        display: size.display,
         acceleration: true
     });
 
-    resizeBook();
+    // 🔥 fuerza recalculo real (CLAVE)
+    setTimeout(function () {
+        renderBook();
+    }, 200);
 
 });
 
 $(window).on("resize", function () {
-    resizeBook();
+    renderBook();
 });
