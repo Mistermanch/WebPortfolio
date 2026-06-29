@@ -4,7 +4,7 @@
 }
 
 body {
-    font: "Mistermanch";
+    font-family: "Mistermanch";
     background-color: gray;
     overflow: visible;
     display: grid;
