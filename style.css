@@ -5,9 +5,9 @@
 body{
     margin:0;
     padding:0;
-    height:100vh;
-    width:100vw;
-    overflow:hidden;
+    min-height:100vh;
+    width:100%;
+    overflow-x:hidden;
     background:#111; /* neutral dark background */
     font-family: "Mistermanch", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
@@ -68,14 +68,16 @@ body{
     flex-direction:column;
     align-items:center;
     justify-content:flex-start;
-    padding-top:1.25rem;
+    padding:2rem 1.5rem;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
+    box-sizing:border-box;
 }
 
 
-.page .page-inner{font-size: clamp(16px,2.5vw,22px); line-height:1.45; text-align:center; width:100%; padding:0 1.5rem; flex-shrink: 0; z-index: 10;}
+.page .page-inner{font-size: clamp(16px,2.5vw,22px); line-height:1.45; text-align:center; width:100%; padding:0; flex-shrink: 0; z-index: 10;}
 
 .page-title{font-size:clamp(18px,3.5vw,40px); font-weight:700; text-align:center; margin-top:6px}
 .page-body{margin-top:0.75rem; font-size:clamp(14px,2.2vw,18px); text-align:center}
@@ -84,21 +86,23 @@ body{
 .page img {
     width: 100%;
     height: auto;
-    max-height: 100%;
+    max-height: 60vh;
     object-fit: contain;
-    flex-grow: 1;
-    margin-top: auto;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 /* Contenedor para imagenes de página completa */
 .page-image-container {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    flex-grow: 1;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
 }
 
 .cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:2rem;flex-direction:column}
@@ -109,4 +113,11 @@ body{
 
 @media (max-width:600px){
     .flipbook > div{padding:1.2rem}
+    .flipbook .page{
+        padding:1.5rem 1rem;
+    }
+    .page img{
+        max-height:50vh;
+        padding:0 0.5rem;
+    }
 }
