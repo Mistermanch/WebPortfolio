@@ -63,8 +63,6 @@ body{
 
 .cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:3rem;font-size:clamp(36px,10vw,120px);}
 
-.page-title{display:flex;align-items:center;justify-content:top;height:100%;padding:3rem;font-size:clamp(24px,6vw,72px);}
-
 
 @media (max-width:600px){
     .flipbook > div{padding:1.2rem}
