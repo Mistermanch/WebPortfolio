@@ -1,5 +1,6 @@
 (function($){
 	$(function(){
+		//Turn.js initialisation
 		function initBook(){
 			var w = $(window).width();
 			var h = $(window).height();
@@ -15,7 +16,7 @@
 		}
 
 		initBook();
-
+		//Book resize
 		var resizeTimer;
 		$(window).on('resize', function(){
 			clearTimeout(resizeTimer);
