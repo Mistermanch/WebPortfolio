@@ -22,7 +22,7 @@ A stunning **interactive flipbook-style web portfolio** showcasing your projects
 
 ## 📖 Projects Featured
 
-- **About Me** - Your background and skills
+- **About Me** 
 - **CanSat** - ESA/ESERO project participation
 - **MIDI Drums** - Arduino-based percussion instrument
 - **Web Portfolio** - This project itself
