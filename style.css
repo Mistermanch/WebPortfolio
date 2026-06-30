@@ -44,7 +44,7 @@ body{
 
 .flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
 
-/* Pages */
+
 
 .flipbook .page{
     background:#fff;
@@ -57,13 +57,15 @@ body{
     align-items:center;
 }
 
-/* Make text readable on pages and place at top center */
+
 .page .page-inner{font-size: clamp(16px,2.5vw,22px); line-height:1.45; margin-top:2.25rem; text-align:center; width:100%}
 
-/* Cover title styling: center and larger */
+
 .cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:3rem;font-size:clamp(36px,10vw,120px);}
 
-/* Small screens: reduce padding */
+.page-title{display:flex;align-items:center;justify-content:top;height:100%;padding:3rem;font-size:clamp(24px,6vw,72px);}
+
+
 @media (max-width:600px){
     .flipbook > div{padding:1.2rem}
 }
