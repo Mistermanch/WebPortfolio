@@ -6,7 +6,11 @@
 			$('.flipbook').turn({
 				width: w,
 				height: h,
-				autoCenter: true
+				autoCenter: true,
+				display: 'double',
+				acceleration: true,
+				gradients: true,
+				elevation: 50
 			});
 		}
 

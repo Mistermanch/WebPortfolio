@@ -20,6 +20,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+    overflow:hidden;
 }
 
 /* Each child is a single page (two pages shown side-by-side by turn.js)
@@ -31,7 +32,6 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:3rem;
 }
 
 /* Hard covers */
@@ -48,6 +48,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+    transform-style:preserve-3d;
 }
 
 .flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
@@ -59,12 +60,14 @@ body{
     color:#000;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
-    box-shadow:0 6px 20px rgba(0,0,0,0.35);
+    /* remove outer shadow which can create visible gaps during transform */
+    box-shadow:none;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:flex-start;
     padding-top:1.25rem;
+    transform-style:preserve-3d;
 }
 
 
