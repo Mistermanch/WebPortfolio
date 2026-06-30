@@ -41,6 +41,7 @@ body{
         rgba(255,255,255,0.05) 49px,
         transparent 50px
     );
+    background-attachment: fixed, scroll, scroll, scroll, scroll, fixed;
     background-size:
     100px 100px,
     100px 100px,
