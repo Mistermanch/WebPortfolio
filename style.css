@@ -13,50 +13,55 @@ body{
 }
 
 /* Book container fills viewport and centers the book */
+
 .flipbook{
     position:fixed;
     inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     pointer-events:auto;
 }
 
-/* Each child is a single page (two pages shown side-by-side by turn.js)
-     Page width is 50% of the book container; height is full viewport */
+/* let turn.js size pages; keep children simple blocks */
 .flipbook > div{
     box-sizing:border-box;
-    width:50%;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:3rem;
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
 }
 
 /* Hard covers */
+
 .flipbook .hard{
     background:#5a0000; /* dark red */
     color:#d4af37; /* gold */
     font-weight:700;
-    font-size:clamp(18px,4vw,48px);
     text-align:center;
-    border:4px solid #3e0000;
+    /* use inset outline so it doesn't change element outer size during transforms */
+    box-shadow: inset 0 0 0 6px #3e0000;
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
 }
 
 .flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
 
 /* Pages */
+
 .flipbook .page{
     background:#fff;
     color:#000;
-    box-shadow:0 6px 20px rgba(0,0,0,0.45);
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,0.35);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-/* Make text readable on pages */
-.page{font-size: clamp(16px,2.5vw,22px); line-height:1.45}
+/* Make text readable on pages and place at top center */
+.page .page-inner{font-size: clamp(16px,2.5vw,22px); line-height:1.45; margin-top:2.25rem; text-align:center; width:100%}
+
+/* Cover title styling: center and larger */
+.cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:3rem;font-size:clamp(36px,10vw,120px);}
 
 /* Small screens: reduce padding */
 @media (max-width:600px){
