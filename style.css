@@ -17,16 +17,21 @@ body{
 .flipbook{
     position:fixed;
     inset:0;
-    pointer-events:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-/* let turn.js size pages; keep children simple blocks */
+/* Each child is a single page (two pages shown side-by-side by turn.js)
+   Page width is 50% of the book container; height is full viewport */
 .flipbook > div{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
-    height:100%;
-    width:100%;
+    width:50%;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:3rem;
 }
 
 /* Hard covers */
@@ -40,6 +45,9 @@ body{
     box-shadow: inset 0 0 0 6px #3e0000;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
@@ -66,9 +74,10 @@ body{
 .page-body{margin-top:0.75rem; font-size:clamp(14px,2.2vw,18px); text-align:center}
 
 
-.cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:3rem;flex-direction:column}
+.cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:2rem;flex-direction:column}
 .cover-title .cover-line{line-height:1}
-.cover-title .cover-sub{font-size:0.5em; margin-top:0.35rem}
+.cover-title .cover-sub{font-size:0.65em; margin-top:0.35rem}
+.cover-title{font-size:clamp(28px,6vw,64px)}
 
 
 @media (max-width:600px){
