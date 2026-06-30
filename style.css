@@ -1,7 +1,9 @@
+/*Custom Font*/
 @font-face {
     font-family: "Mistermanch";
     src: url("fonts/Mistermanch-Regular.otf") format("opentype");
 }
+/*Body properties*/
 body{
     margin:0;
     padding:0;
@@ -52,7 +54,7 @@ background-position:
 }
 
 
-
+/*FLipbook Properties*/
 .flipbook{
     position:fixed;
     inset:0;
@@ -73,8 +75,7 @@ background-position:
     position:relative;
 }
 
-/* Hard covers */
-
+/*Hard covers*/
 .flipbook .hard{
     background:#5a0000; 
     color:#d4af37; 
@@ -93,7 +94,7 @@ background-position:
 .flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
 
 
-
+/*Pages*/
 .flipbook .page{
     background:#fff;
     color:#000;
