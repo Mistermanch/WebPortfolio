@@ -160,7 +160,7 @@ background-position:
     position: absolute;
     bottom: 2rem;
     right: 2rem;
-    font-size: 5rem;
+    font-size: 3rem;
     color: #d4af37;
     opacity: 0.7;
     animation: pulse 2s infinite;
@@ -175,6 +175,6 @@ background-position:
     .click-hint {
         bottom: 1rem;
         right: 1rem;
-        font-size: 5rem;
+        font-size: 3rem;
     }
 }
