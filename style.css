@@ -8,11 +8,43 @@ body{
     height:100vh;
     width:100vw;
     overflow:hidden;
-    background:#111; /* neutral dark background */
+    background-color: #315c38;
+    background-image: 
+    radial-gradient(
+        rgba(255,255,255,0.08) 1px,
+        transparent 1px
+    ),
+
+    linear-gradient(
+        rgba(255,255,255,0.12) 1px,
+        transparent 1px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,0.12) 1px,
+        transparent 1px
+    ),
+
+    linear-gradient(
+        rgba(0,0,0,0.18) 2px,
+        transparent 2px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(0,0,0,0.18) 2px,
+        transparent 2px
+    ),
+
+    repeating-linear-gradient(
+        45deg,
+        transparent 0 48px,
+        rgba(255,255,255,0.05) 49px,
+        transparent 50px
+    );
     font-family: "Mistermanch", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* Book container fills viewport and centers the book */
+
 
 .flipbook{
     position:fixed;
@@ -23,8 +55,7 @@ body{
     overflow:hidden;
 }
 
-/* Each child is a single page (two pages shown side-by-side by turn.js)
-   Page width is 50% of the book container; height is full viewport */
+
 .flipbook > div{
     box-sizing:border-box;
     width:50%;
@@ -38,11 +69,10 @@ body{
 /* Hard covers */
 
 .flipbook .hard{
-    background:#5a0000; /* dark red */
-    color:#d4af37; /* gold */
+    background:#5a0000; 
+    color:#d4af37; 
     font-weight:700;
     text-align:center;
-    /* use inset outline so it doesn't change element outer size during transforms */
     box-shadow: inset 0 0 0 6px #3e0000;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
@@ -51,7 +81,7 @@ body{
     justify-content:center;
 }
 
-/* no hard-cover pseudo-elements (removed) */
+
 
 .flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
 
@@ -62,7 +92,6 @@ body{
     color:#000;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
-    /* remove outer shadow which can create visible gaps during transform */
     box-shadow:none;
     display:flex;
     flex-direction:column;
@@ -80,12 +109,8 @@ body{
 .page-title{font-size:clamp(32px, 5.5vw, 64px); font-weight:700; text-align:center; margin-top:6px}
 .page-body{margin-top:0.75rem; font-size:clamp(20px, 3.5vw, 32px); text-align:center; width:100%; padding:0 1.5rem; box-sizing: border-box;}
 
-/* Image layout: use a responsive grid so multiple images fit without distortion
-   - auto-fit + minmax ensures images take available space and wrap to new rows
-   - keep aspect ratio with object-fit: contain and max-height so images don't overflow */
 .page-image-container {
     width: 100%;
-    /* switch from a single-column flexbox to a responsive grid */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
@@ -97,18 +122,17 @@ body{
 }
 
 .page-image-container img {
-    /* ensure images fill their grid cell but keep their aspect ratio */
+
     width: 100%;
     height: auto;
-    max-height: calc(50vh - 4rem); /* leave space for title/text */
-    object-fit: contain; /* preserves aspect ratio without cropping */
+    max-height: calc(50vh - 4rem); 
+    object-fit: contain;
     display: block;
 }
 
-/* Fallback for very small screens: reduce the max-height and minimum column size */
 @media (max-width: 600px) {
     .page-image-container {
-        grid-template-columns: 1fr; /* stack images on small screens */
+        grid-template-columns: 1fr;
     }
     .page-image-container img {
         max-height: calc(35vh - 3rem);
