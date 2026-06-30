@@ -10,38 +10,32 @@ body{
     overflow:hidden;
     background-color: #315c38;
     background-image: 
-    radial-gradient(
-        rgba(255,255,255,0.08) 1px,
-        transparent 1px
-    ),
-
-    linear-gradient(
-        rgba(255,255,255,0.12) 1px,
-        transparent 1px
-    ),
-    linear-gradient(
-        90deg,
-        rgba(255,255,255,0.12) 1px,
-        transparent 1px
-    ),
-
-    linear-gradient(
-        rgba(0,0,0,0.18) 2px,
-        transparent 2px
-    ),
-    linear-gradient(
-        90deg,
-        rgba(0,0,0,0.18) 2px,
-        transparent 2px
-    ),
-
-    repeating-linear-gradient(
+        repeating-linear-gradient(
         45deg,
         transparent 0 48px,
         rgba(255,255,255,0.05) 49px,
         transparent 50px
+    ),
+
+    linear-gradient(
+        rgba(255,255,255,0.12) 1px,
+        transparent 1px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,0.12) 1px,
+        transparent 1px
+    ),
+
+    linear-gradient(
+        rgba(0,0,0,0.18) 2px,
+        transparent 2px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(0,0,0,0.18) 2px,
+        transparent 2px
     );
-    background-attachment: fixed, scroll, scroll, scroll, scroll, fixed;
     background-size:
     100px 100px,
     100px 100px,
