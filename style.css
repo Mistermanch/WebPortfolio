@@ -55,13 +55,20 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:flex-start;
+    padding-top:1.25rem;
 }
 
 
-.page .page-inner{font-size: clamp(16px,2.5vw,22px); line-height:1.45; margin-top:2.25rem; text-align:center; width:100%}
+.page .page-inner{font-size: clamp(16px,2.5vw,22px); line-height:1.45; text-align:center; width:100%; padding:0 1.5rem}
+
+.page-title{font-size:clamp(18px,3.5vw,40px); font-weight:700; text-align:center; margin-top:6px}
+.page-body{margin-top:0.75rem; font-size:clamp(14px,2.2vw,18px); text-align:center}
 
 
-.cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:3rem;font-size:clamp(36px,10vw,120px);}
+.cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:3rem;flex-direction:column}
+.cover-title .cover-line{line-height:1}
+.cover-title .cover-sub{font-size:0.5em; margin-top:0.35rem}
 
 
 @media (max-width:600px){
