@@ -178,3 +178,54 @@ background-position:
         font-size: 3rem;
     }
 }
+
+
+/* ------------------ Mobile Scroll Mode Overrides ------------------ */
+/* These styles are applied when JS adds the .mobile-scroll class to .flipbook
+   and .mobile-scroll-active to the body. They make pages stack vertically and
+   enable native scrolling on touch devices. */
+
+body.mobile-scroll-active {
+    /* allow the page to scroll naturally on mobile */
+    height: auto !important;
+    overflow: auto !important;
+}
+
+.flipbook.mobile-scroll{
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: auto !important;
+    padding: 1rem !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+.flipbook.mobile-scroll > div{
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    padding: 1rem 0 !important;
+    box-sizing: border-box !important;
+    float: none !important;
+}
+
+.flipbook.mobile-scroll .page{
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+    box-shadow: none !important;
+    margin-bottom: 1.25rem !important;
+}
+
+.flipbook.mobile-scroll .page .page-inner{
+    padding: 0 1rem !important;
+}
+
+/* Hide the click hint on touch devices since swipe/scroll is natural */
+.flipbook.mobile-scroll .click-hint{ display:none !important; }
