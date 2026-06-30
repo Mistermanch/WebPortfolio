@@ -2,44 +2,63 @@
     font-family: "Mistermanch";
     src: url("fonts/Mistermanch-Regular.otf") format("opentype");
 }
-
-body {
-    font-family: "Mistermanch";
-    background-color: gray;
-    overflow: hidden;
-    display: grid;
-    place-content: center;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    width:100vw;
+    overflow:hidden;
+    background:#111; /* neutral dark background */
+    font-family: "Mistermanch", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-.flipbook {
-    height: 100vh;
-    width: 100vw;
+/* Book container fills viewport and centers the book */
+.flipbook{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:auto;
 }
 
-.flipbook > div {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.11);
+/* Each child is a single page (two pages shown side-by-side by turn.js)
+     Page width is 50% of the book container; height is full viewport */
+.flipbook > div{
+    box-sizing:border-box;
+    width:50%;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:3rem;
 }
 
-.flipbook .hard {
-    background: orange;
-    color: black;
+/* Hard covers */
+.flipbook .hard{
+    background:#5a0000; /* dark red */
+    color:#d4af37; /* gold */
+    font-weight:700;
+    font-size:clamp(18px,4vw,48px);
+    text-align:center;
+    border:4px solid #3e0000;
 }
 
-.flipbook .page {
-    background: white;
-    opacity: 1;
-    -webkit-backface-visibility: hidden; 
-    backface-visibility: hidden; 
-    will-change: transform;
+.flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
+
+/* Pages */
+.flipbook .page{
+    background:#fff;
+    color:#000;
+    box-shadow:0 6px 20px rgba(0,0,0,0.45);
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+}
+
+/* Make text readable on pages */
+.page{font-size: clamp(16px,2.5vw,22px); line-height:1.45}
+
+/* Small screens: reduce padding */
+@media (max-width:600px){
+    .flipbook > div{padding:1.2rem}
 }
