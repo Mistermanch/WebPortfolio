@@ -3,6 +3,14 @@ const levels = document.querySelectorAll(".level")
 const circleTransition = document.getElementById("circle-transition")
 const svg = document.getElementById("connection-lines")
 
+// Set initial player position at home
+window.addEventListener('load', function() {
+    const homeLevel = document.getElementById("home")
+    player.style.left = homeLevel.offsetLeft + "px"
+    player.style.top = homeLevel.offsetTop + "px"
+    drawConnectionLines()
+})
+
 // Draw connection lines between home and other destinations
 function drawConnectionLines() {
     const homeLevel = document.getElementById("home")
@@ -11,10 +19,8 @@ function drawConnectionLines() {
     // Clear existing lines
     svg.innerHTML = ""
     
-    const menuRect = document.querySelector(".menu").getBoundingClientRect()
-    
     otherLevels.forEach(level => {
-        // Get positions relative to menu container
+        // Get center positions of icons
         const fromX = homeLevel.offsetLeft + 32
         const fromY = homeLevel.offsetTop + 32
         const toX = level.offsetLeft + 32
@@ -29,28 +35,25 @@ function drawConnectionLines() {
     })
 }
 
-// Draw lines on load after a small delay to ensure DOM is ready
-setTimeout(drawConnectionLines, 100)
-
 levels.forEach(level => {
     level.addEventListener("click", function(e) {
-        e.preventDefault()
-        
-        // Skip if clicking on home or if already at home
-        if (level.id === "home" || !level.href) {
+        // Don't prevent default for home
+        if (level.id === "home") {
             return
         }
+        
+        e.preventDefault()
 
         // Animate player to destination
-        player.style.left = (level.offsetLeft) + "px"
-        player.style.top  = (level.offsetTop - 30) + "px"
+        player.style.left = level.offsetLeft + "px"
+        player.style.top = level.offsetTop + "px"
 
         // Circle transition and navigation
         setTimeout(() => {
             circleTransition.classList.add("active")
             
             setTimeout(() => {
-                if (level.href) {
+                if (level.href && level.href !== "#") {
                     window.location.href = level.href
                 }
             }, 400)
