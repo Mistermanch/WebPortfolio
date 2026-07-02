@@ -3,9 +3,6 @@ const levels = document.querySelectorAll(".level")
 const circleTransition = document.getElementById("circle-transition")
 const svg = document.getElementById("connection-lines")
 
-// Initial player position at home
-let currentLevel = document.getElementById("home")
-
 // Draw connection lines between home and other destinations
 function drawConnectionLines() {
     const homeLevel = document.getElementById("home")
@@ -14,8 +11,11 @@ function drawConnectionLines() {
     // Clear existing lines
     svg.innerHTML = ""
     
+    const menuRect = document.querySelector(".menu").getBoundingClientRect()
+    
     otherLevels.forEach(level => {
-        const fromX = homeLevel.offsetLeft + 32 // Center of icon
+        // Get positions relative to menu container
+        const fromX = homeLevel.offsetLeft + 32
         const fromY = homeLevel.offsetTop + 32
         const toX = level.offsetLeft + 32
         const toY = level.offsetTop + 32
@@ -29,8 +29,8 @@ function drawConnectionLines() {
     })
 }
 
-// Draw lines on load
-drawConnectionLines()
+// Draw lines on load after a small delay to ensure DOM is ready
+setTimeout(drawConnectionLines, 100)
 
 levels.forEach(level => {
     level.addEventListener("click", function(e) {
@@ -42,8 +42,8 @@ levels.forEach(level => {
         }
 
         // Animate player to destination
-        player.style.left = (level.offsetLeft + 32 - 20) + "px"
-        player.style.top  = (level.offsetTop - 50) + "px"
+        player.style.left = (level.offsetLeft) + "px"
+        player.style.top  = (level.offsetTop - 30) + "px"
 
         // Circle transition and navigation
         setTimeout(() => {
