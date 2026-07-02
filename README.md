@@ -1,7 +1,7 @@
 # WebPortfolio 📚
 ## ^_^
 
-This project is a webpage designed tp shpw off some projects I have done. 
+This project is a webpage designed to show off some projects I have done. 
 
 <img width="1375" height="1066" alt="Captura de pantalla 2026-06-30 204752" src="https://github.com/user-attachments/assets/70b5b3d4-711b-4b6a-8f16-004e7e38df2a" />
 
