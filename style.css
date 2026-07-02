@@ -13,7 +13,7 @@ body{
     background-color: #000000;
     font-family: Akira, Helvetica;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -21,6 +21,7 @@ body{
     position: fixed;
     top: 50%;
     left: 50%;
+    z-index: -1;
     height: 4px;
     width: 4px;
     background-color: #fff;
@@ -50,8 +51,69 @@ body{
         filter: brightness(1.4);
     }
 }
+
 #main-title{
+    top: 5%;
     font-size: 128px;
     font-weight: 700;
     color: #e7e3a3;
+}
+
+.menu{
+    position: relative;
+    width: 900px;
+    height:500px;
+    align-self: center;
+}
+
+#player{
+    position: absolute;
+    font-size: 40px;
+    left: 50px;
+    top: 200px;
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+.level{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #e7e3a3;
+}
+
+.icon{
+    font-size: 64px;
+    transition: transform .2s;
+}
+
+.level:hover .icon{
+    transform: scale(1.15);
+}
+
+.label{
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+#about{
+    left: 50px;
+    top: 200px;
+}
+
+#projects{
+    left: 280px;
+    top: 320px;
+}
+
+#socials{
+    left: 520px;
+    top: 150px;
+}
+
+#suggestions{
+    left: 760px;
+    top: 260px;
 }
