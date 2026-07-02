@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Akira';
+    src: url('fonts/Akira\ Expanded\ Demo.otf') format("opentype");
+    font-style: normal;
+}
+
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    width:100vw;
+    overflow:hidden;
+    background-color: #000000;
+    font-family: Akira, Helvetica;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#background{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 4px;
+    width: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 
+    -48vw -45vh #fff,-45vw -20vh #fff,-44vw 12vh #fff,-42vw 38vh #fff,
+    -38vw -10vh #fff,-36vw 30vh #fff,-32vw -35vh #fff,-28vw 8vh #fff,
+    -24vw 42vh #fff,-20vw -48vh #fff,-18vw -12vh #fff,-14vw 24vh #fff,
+    -10vw -32vh #fff,-8vw 40vh #fff,-4vw -18vh #fff,0vw 30vh #fff,
+    4vw -40vh #fff,8vw 12vh #fff,12vw 45vh #fff,16vw -22vh #fff,
+    20vw 8vh #fff,24vw -36vh #fff,28vw 28vh #fff,32vw -8vh #fff,
+    36vw 40vh #fff,40vw -28vh #fff,44vw 15vh #fff,48vw -42vh #fff,
+
+    -35vw 0vh 2px #fff,-12vw 12vh 2px #fff,14vw -15vh 2px #fff,
+    38vw 6vh 2px #fff,-6vw -42vh 2px #fff,22vw -36vh 2px #fff,
+    -42vw 1vh 2px #fff,42vw 6vh 2px #fff;
+    animation: twinkle 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.65;
+        filter: brightness(0.8);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1.4);
+    }
+}
+#main-title{
+    font-size: 128px;
+    font-weight: 700;
+    color: #e7e3a3;
+}
