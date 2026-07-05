@@ -53,35 +53,6 @@ body{
     }
 }
 
-@keyframes circle-close {
-    0% {
-        clip-path: circle(0% at 50% 50%);
-        opacity: 1;
-    }
-    100% {
-        clip-path: circle(150% at 50% 50%);
-        opacity: 0;
-    }
-}
-
-#circle-transition {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 100vh;
-    background-color: #000000;
-    z-index: 100;
-    display: none;
-    pointer-events: none;
-}
-
-#circle-transition.active {
-    display: block;
-    animation: circle-close 0.8s ease-in forwards;
-}
-
 #main-title{
     font-size: 128px;
     font-weight: 700;
