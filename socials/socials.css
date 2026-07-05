@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #74d1d8;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    padding: 30px;
+}
+
+#playground {
+    position: relative;
+    width: min(100px,90vw);
+    height: (70vh);
+    margin: auto;
+    border: 2px solid #535050;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.ball {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3)
+}
+.ball:active {
+    cursor: grabbing;
+}
+.ball img {
+    width: 42px;
+    height: 42px;
+    pointer-events: none;
+}

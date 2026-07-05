@@ -1,231 +1,168 @@
-/*Custom Font*/
 @font-face {
-    font-family: "Mistermanch";
-    src: url("fonts/Mistermanch-Regular.otf") format("opentype");
+    font-family: 'Akira';
+    src: url('fonts/Akira\ Expanded\ Demo.otf') format("opentype");
+    font-style: normal;
 }
-/*Body properties*/
+
 body{
     margin:0;
     padding:0;
     height:100vh;
     width:100vw;
     overflow:hidden;
-    background-color: #315c38;
-    background-image: 
-        repeating-linear-gradient(
-            45deg,
-            rgba(255,255,255,0.07) 0px,
-            rgba(255,255,255,0.07) 1px,
-            transparent 1px,
-            transparent 24px
-        ),
-        linear-gradient(
-            rgba(255,255,255,0.16) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.16) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            rgba(0,0,0,0.22) 2px,
-            transparent 2px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,0.22) 2px,
-            transparent 2px
-        );
-    background-size:
-        24px 24px,
-        10px 10px,
-        10px 10px,
-        50px 50px,
-        50px 50px;
-background-position:
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0;
-    font-family: "Mistermanch", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: #000000;
+    font-family: Akira, Helvetica;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+#background{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    height: 4px;
+    width: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 
+    -48vw -45vh #fff,-45vw -20vh #fff,-44vw 12vh #fff,-42vw 38vh #fff,
+    -38vw -10vh #fff,-36vw 30vh #fff,-32vw -35vh #fff,-28vw 8vh #fff,
+    -24vw 42vh #fff,-20vw -48vh #fff,-18vw -12vh #fff,-14vw 24vh #fff,
+    -10vw -32vh #fff,-8vw 40vh #fff,-4vw -18vh #fff,0vw 30vh #fff,
+    4vw -40vh #fff,8vw 12vh #fff,12vw 45vh #fff,16vw -22vh #fff,
+    20vw 8vh #fff,24vw -36vh #fff,28vw 28vh #fff,32vw -8vh #fff,
+    36vw 40vh #fff,40vw -28vh #fff,44vw 15vh #fff,48vw -42vh #fff,
 
-/*FLipbook Properties*/
-.flipbook{
-    position:fixed;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
+    -35vw 0vh 2px #fff,-12vw 12vh 2px #fff,14vw -15vh 2px #fff,
+    38vw 6vh 2px #fff,-6vw -42vh 2px #fff,22vw -36vh 2px #fff,
+    -42vw 1vh 2px #fff,42vw 6vh 2px #fff;
+    animation: twinkle 1.8s ease-in-out infinite alternate;
 }
 
-
-.flipbook > div{
-    box-sizing:border-box;
-    width:50%;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
+@keyframes twinkle {
+    0% {
+        opacity: 0.65;
+        filter: brightness(0.8);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1.4);
+    }
 }
 
-/*Hard covers*/
-.flipbook .hard{
-    background:#5a0000; 
-    color:#d4af37; 
-    font-weight:700;
-    text-align:center;
-    box-shadow: inset 0 0 0 6px #3e0000;
-    -webkit-backface-visibility:hidden;
-    backface-visibility:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+@keyframes circle-close {
+    0% {
+        clip-path: circle(0% at 50% 50%);
+        opacity: 1;
+    }
+    100% {
+        clip-path: circle(150% at 50% 50%);
+        opacity: 0;
+    }
 }
 
+#circle-transition {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    z-index: 100;
+    display: none;
+    pointer-events: none;
+}
 
+#circle-transition.active {
+    display: block;
+    animation: circle-close 0.8s ease-in forwards;
+}
 
-.flipbook .hard small{color:#d4af37; font-weight:600; display:block; font-size:60%; margin-top:6px}
+#main-title{
+    font-size: 128px;
+    font-weight: 700;
+    color: #e7e3a3;
+    text-align: center;
+    margin-bottom: 40px;
+}
 
+.menu{
+    position: relative;
+    width: 900px;
+    height:500px;
+}
 
-/*Pages*/
-.flipbook .page{
-    background:#fff;
-    color:#000;
-    -webkit-backface-visibility:hidden;
-    backface-visibility:hidden;
-    box-shadow:none;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    padding-top:1.25rem;
+#connection-lines {
+    position: absolute;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    pointer-events: none;
 }
 
-
-.page .page-inner{font-size: clamp(22px, 3.8vw, 36px); line-height:1.6; text-align:center; width:100%; padding:0 1.5rem; flex-shrink: 0; z-index: 10;}
-
-.page-title{font-size:clamp(32px, 5.5vw, 64px); font-weight:700; text-align:center; margin-top:6px}
-.page-body{margin-top:0.75rem; font-size:clamp(20px, 3.5vw, 32px); text-align:center; width:100%; padding:0 1.5rem; box-sizing: border-box;}
-
-.page-image-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    align-items: center;
-    justify-items: center;
-    flex-grow: 1;
-    padding: 0 1.5rem;
-    box-sizing: border-box;
+#connection-lines line {
+    stroke: #e7e3a3;
+    stroke-width: 2;
+    opacity: 0.4;
 }
 
-.page-image-container img {
-
-    width: 100%;
-    height: auto;
-    max-height: calc(50vh - 4rem); 
-    object-fit: contain;
-    display: block;
-}
-
-@media (max-width: 600px) {
-    .page-image-container {
-        grid-template-columns: 1fr;
-    }
-    .page-image-container img {
-        max-height: calc(35vh - 3rem);
-    }
-}
-
-.cover-title{display:flex;align-items:center;justify-content:center;height:100%;padding:2rem;flex-direction:column}
-.cover-title .cover-line{line-height:1}
-.cover-title .cover-sub{font-size:0.65em; margin-top:0.35rem}
-.cover-title{font-size:clamp(48px, 8vw, 84px)}
-
-
-@media (max-width:600px){
-    .flipbook > div{padding:1.2rem}
-}
-.click-hint {
+#player{
     position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    font-size: 3rem;
-    color: #d4af37;
-    opacity: 0.7;
-    animation: pulse 2s infinite;
+    font-size: 40px;
+    transition: all 1.2s ease;
+    z-index: 10;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+.level{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #e7e3a3;
 }
 
-@media (max-width: 600px) {
-    .click-hint {
-        bottom: 1rem;
-        right: 1rem;
-        font-size: 3rem;
-    }
+.icon{
+    font-size: 64px;
+    transition: transform .2s;
 }
 
-
-/* ------------------ Mobile Scroll Mode Overrides ------------------ */
-/* These styles are applied when JS adds the .mobile-scroll class to .flipbook
-   and .mobile-scroll-active to the body. They make pages stack vertically and
-   enable native scrolling on touch devices. */
-
-body.mobile-scroll-active {
-    /* allow the page to scroll naturally on mobile */
-    height: auto !important;
-    overflow: auto !important;
+.level:hover .icon{
+    transform: scale(1.15);
 }
 
-.flipbook.mobile-scroll{
-    position: relative !important;
-    inset: auto !important;
-    display: block !important;
-    align-items: stretch !important;
-    justify-content: flex-start !important;
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: auto !important;
-    padding: 1rem !important;
-    -webkit-overflow-scrolling: touch;
+.label{
+    margin-top: 10px;
+    font-size: 18px;
 }
 
-.flipbook.mobile-scroll > div{
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    padding: 1rem 0 !important;
-    box-sizing: border-box !important;
-    float: none !important;
+#home{
+    left: 100px;
+    top: 150px;
 }
 
-.flipbook.mobile-scroll .page{
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    overflow: visible !important;
-    transform: none !important;
-    box-shadow: none !important;
-    margin-bottom: 1.25rem !important;
+#about{
+    left: 250px;
+    top: 100px;
 }
 
-.flipbook.mobile-scroll .page .page-inner{
-    padding: 0 1rem !important;
+#projects{
+    left: 400px;
+    top: 200px;
 }
 
-/* Hide the click hint on touch devices since swipe/scroll is natural */
-.flipbook.mobile-scroll .click-hint{ display:none !important; }
+#socials{
+    left: 550px;
+    top: 80px;
+}
+
+#suggestions{
+    left: 700px;
+    top: 250px;
+}
