@@ -25,11 +25,10 @@
 					elevation: 50
 				});
 				flipInitialized = true;
-				// Ensure any mobile classes are removed
+
 				$('.flipbook').removeClass('mobile-scroll');
 				$('body').removeClass('mobile-scroll-active');
 			}catch(e){
-				// failed to initialize (maybe turn.js not loaded) — leave flipInitialized false
 				flipInitialized = false;
 			}
 		}
@@ -38,9 +37,7 @@
 			if(!flipInitialized) return;
 			try{
 				$('.flipbook').turn('destroy');
-			}catch(e){
-				// ignore if already destroyed or not present
-			}
+			}catch(e){}
 			flipInitialized = false;
 		}
 
@@ -70,16 +67,15 @@
 			resizeTimer = setTimeout(function(){
 				var w = $(window).width();
 				var h = $(window).height();
+
 				if(flipInitialized){
 					try{
 						$('.flipbook').turn('size', w, h);
 					}catch(e){
-						// if something goes wrong, destroy and try to re-init
 						destroyFlip();
 						initBook();
 					}
-				} else {
-					// not initialized — if we're on desktop, try to init
+				}else{
 					if(!isTouchDevice()){
 						initBook();
 					}
@@ -87,18 +83,48 @@
 			}, 150);
 		});
 
-		// Listen for pointer/coarse changes (e.g., docking/undocking some devices)
+		// Listen for pointer/coarse changes
 		var mql = window.matchMedia('(pointer: coarse)');
 		var onChange = function(e){
 			if(e.matches){
-				// switched to coarse pointer (likely touch)
 				applyMobileMode();
-			} else {
-				// switched to fine pointer (likely desktop)
+			}else{
 				applyDesktopMode();
 			}
 		};
-		if(mql.addEventListener) mql.addEventListener('change', onChange);
-		else if(mql.addListener) mql.addListener(onChange);
+
+		if(mql.addEventListener){
+			mql.addEventListener('change', onChange);
+		}else if(mql.addListener){
+			mql.addListener(onChange);
+		}
+
+		// ==========================
+		// Keyboard navigation
+		// ==========================
+		$(document).on('keydown', function(e){
+
+			// Only when Turn.js is active
+			if(!flipInitialized) return;
+
+			// Ignore typing in form fields
+			if($(e.target).is('input, textarea, select')) return;
+
+			switch(e.code){
+				case 'ArrowRight':
+				case 'KeyD':
+					e.preventDefault();
+					$('.flipbook').turn('next');
+					break;
+
+				case 'ArrowLeft':
+				case 'KeyA':
+					e.preventDefault();
+					$('.flipbook').turn('previous');
+					break;
+			}
+		});
+
 	});
 })(jQuery);
+
