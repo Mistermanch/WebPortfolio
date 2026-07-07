@@ -53,12 +53,6 @@ background-position:
     font-family: "Mistermanch", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-body.mobile-scroll-active {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
-    width: 100%;
-}
 
 /*FLipbook Properties*/
 .flipbook{
@@ -70,16 +64,6 @@ body.mobile-scroll-active {
     overflow:hidden;
 }
 
-.flipbook.mobile-scroll {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    overflow: visible;
-    height: auto;
-    width: 100%;
-}
 
 .flipbook > div{
     box-sizing:border-box;
@@ -89,14 +73,6 @@ body.mobile-scroll-active {
     align-items:center;
     justify-content:center;
     position:relative;
-}
-
-.flipbook.mobile-scroll > div {
-    width: 100%;
-    height: auto;
-    min-height: 100vh;
-    position: relative;
-    margin: 0;
 }
 
 /*Hard covers*/
@@ -151,10 +127,10 @@ body.mobile-scroll-active {
     flex-grow: 1;
     padding: 0 1.5rem;
     box-sizing: border-box;
-    margin-bottom: 1.5rem;
 }
 
 .page-image-container img {
+
     width: 100%;
     height: auto;
     max-height: calc(50vh - 4rem); 
@@ -162,29 +138,12 @@ body.mobile-scroll-active {
     display: block;
 }
 
-.flipbook.mobile-scroll .page-image-container img {
-    max-height: calc(60vh - 4rem);
-}
-
 @media (max-width: 600px) {
     .page-image-container {
         grid-template-columns: 1fr;
     }
     .page-image-container img {
-        max-height: calc(40vh - 3rem);
-    }
-    
-    .page .page-inner {
-        padding: 0 1rem;
-    }
-    
-    .page-body {
-        padding: 0 1rem;
-        font-size: clamp(16px, 4vw, 24px);
-    }
-    
-    .page-title {
-        font-size: clamp(24px, 6vw, 48px);
+        max-height: calc(35vh - 3rem);
     }
 }
 
@@ -197,7 +156,6 @@ body.mobile-scroll-active {
 @media (max-width:600px){
     .flipbook > div{padding:1.2rem}
 }
-
 .click-hint {
     position: absolute;
     bottom: 2rem;
@@ -217,6 +175,6 @@ body.mobile-scroll-active {
     .click-hint {
         bottom: 1rem;
         right: 1rem;
-        font-size: 1.5rem;
+        font-size: 3rem;
     }
 }
