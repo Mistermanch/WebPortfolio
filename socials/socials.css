@@ -12,14 +12,14 @@ body {
 
 h1 {
     text-align: center;
-    padding: 30px;
+    padding: clamp(12px, 2vh, 24px);
 }
 
 #playground {
     position: relative;
-    width: min(1100px, 92vw);
-    height: min(70vh, 680px);
-    min-height: 320px;
+    width: min(1400px, 96vw);
+    height: min(78vh, 780px);
+    min-height: min(320px, 55vh);
     margin: auto;
     border: 2px solid #535050;
     border-radius: 20px;
@@ -47,4 +47,12 @@ h1 {
     width: 42px;
     height: 42px;
     pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    #playground {
+        width: 96vw;
+        height: 76vh;
+        min-height: 280px;
+    }
 }
