@@ -88,24 +88,45 @@ const mouseConstraint = MouseConstraint.create(engine, {
 
 Composite.add(engine.world, mouseConstraint);
 
-let dragging = false;
+let pointerStart = null;
+let draggedBall = null;
 
-Events.on(mouseConstraint, "startdrag", () => {
-    dragging = true;
+playground.addEventListener("pointerdown", event => {
+    const ball = event.target.closest(".ball");
+    pointerStart = ball ? { x: event.clientX, y: event.clientY, ball } : null;
+    draggedBall = null;
 });
 
-Events.on(mouseConstraint, "enddrag", () => {
-    setTimeout(() => {
-        dragging = false;
-    }, 50);
+window.addEventListener("pointermove", event => {
+    if (!pointerStart) return;
+
+    const distance = Math.hypot(
+        event.clientX - pointerStart.x,
+        event.clientY - pointerStart.y
+    );
+    if (distance > 6) {
+        draggedBall = pointerStart.ball;
+    }
 });
+
+window.addEventListener("pointerup", () => {
+    pointerStart = null;
+    if (draggedBall) {
+        setTimeout(() => {
+            draggedBall = null;
+        }, 0);
+    }
+});
+
+playground.addEventListener("click", event => {
+    if (event.target.closest(".ball") === draggedBall) {
+        event.preventDefault();
+        draggedBall = null;
+    }
+}, true);
 
 balls.forEach(ball => {
-    ball.addEventListener("click", event => {
-        if (dragging) {
-            event.preventDefault();
-        }
-    });
+    ball.setAttribute("draggable", "false");
 });
 
 let lastMotionCheck = 0;
