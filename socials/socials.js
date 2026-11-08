@@ -13,6 +13,7 @@ const playground = document.getElementById("playground");
 const engine = Engine.create();
 engine.world.gravity.y = 0;
 const balls = document.querySelectorAll(".ball");
+const maxSpeed = 6;
 const bodies = [];
 let walls = [];
 let width = playground.clientWidth;
@@ -70,6 +71,16 @@ function updateWalls() {
             y: Math.max(radius, Math.min(height - radius, body.position.y))
         });
     });
+}
+
+function capSpeed(body) {
+    const speed = Math.hypot(body.velocity.x, body.velocity.y);
+    if (speed > maxSpeed) {
+        Body.setVelocity(body, {
+            x: body.velocity.x * maxSpeed / speed,
+            y: body.velocity.y * maxSpeed / speed
+        });
+    }
 }
 
 updateWalls();
@@ -131,6 +142,8 @@ balls.forEach(ball => {
 
 let lastMotionCheck = 0;
 Events.on(engine, "beforeUpdate", event => {
+    bodies.forEach(({ body }) => capSpeed(body));
+
     if (event.timestamp - lastMotionCheck < 1000) return;
     lastMotionCheck = event.timestamp;
 
@@ -148,7 +161,21 @@ Events.on(engine, "beforeUpdate", event => {
 });
 
 Events.on(engine, "afterUpdate", () => {
-    bodies.forEach(({ body, element }) => {
+    bodies.forEach(({ body, element, radius }) => {
+        capSpeed(body);
+
+        const x = Math.max(radius, Math.min(width - radius, body.position.x));
+        const y = Math.max(radius, Math.min(height - radius, body.position.y));
+        const hitVerticalWall = x !== body.position.x;
+        const hitHorizontalWall = y !== body.position.y;
+        if (hitVerticalWall || hitHorizontalWall) {
+            Body.setPosition(body, { x, y });
+            Body.setVelocity(body, {
+                x: hitVerticalWall ? -body.velocity.x : body.velocity.x,
+                y: hitHorizontalWall ? -body.velocity.y : body.velocity.y
+            });
+        }
+
         element.style.left = `${body.position.x}px`;
         element.style.top = `${body.position.y}px`;
         element.style.transform = "translate(-50%, -50%)";
