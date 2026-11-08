@@ -13,7 +13,7 @@ const playground = document.getElementById("playground");
 const engine = Engine.create();
 engine.world.gravity.y = 0;
 const balls = document.querySelectorAll(".ball");
-const maxSpeed = 6;
+const initialSpeed = 2.5;
 const bodies = [];
 let walls = [];
 let width = playground.clientWidth;
@@ -33,16 +33,16 @@ balls.forEach((ball, index) => {
         y,
         radius,
         {
-            restitution: 0.98,
+            restitution: 1,
             friction: 0,
-            frictionAir: 0.002,
+            frictionAir: 0,
         }
     );
 
     const angle = (index / balls.length) * Math.PI * 2;
     Body.setVelocity(body, {
-        x: Math.cos(angle) * 2.5,
-        y: Math.sin(angle) * 2.5
+        x: Math.cos(angle) * initialSpeed,
+        y: Math.sin(angle) * initialSpeed
     });
     Composite.add(engine.world, body);
 
@@ -58,10 +58,10 @@ function updateWalls() {
     width = playground.clientWidth;
     height = playground.clientHeight;
     walls = [
-        Bodies.rectangle(width / 2, -20, width, 40, { isStatic: true }),
-        Bodies.rectangle(width / 2, height + 20, width, 40, { isStatic: true }),
-        Bodies.rectangle(-20, height / 2, 40, height, { isStatic: true }),
-        Bodies.rectangle(width + 20, height / 2, 40, height, { isStatic: true })
+        Bodies.rectangle(width / 2, -20, width, 40, { isStatic: true, restitution: 1, friction: 0 }),
+        Bodies.rectangle(width / 2, height + 20, width, 40, { isStatic: true, restitution: 1, friction: 0 }),
+        Bodies.rectangle(-20, height / 2, 40, height, { isStatic: true, restitution: 1, friction: 0 }),
+        Bodies.rectangle(width + 20, height / 2, 40, height, { isStatic: true, restitution: 1, friction: 0 })
     ];
     Composite.add(engine.world, walls);
 
@@ -75,10 +75,10 @@ function updateWalls() {
 
 function capSpeed(body) {
     const speed = Math.hypot(body.velocity.x, body.velocity.y);
-    if (speed > maxSpeed) {
+    if (speed > initialSpeed) {
         Body.setVelocity(body, {
-            x: body.velocity.x * maxSpeed / speed,
-            y: body.velocity.y * maxSpeed / speed
+            x: body.velocity.x * initialSpeed / speed,
+            y: body.velocity.y * initialSpeed / speed
         });
     }
 }
@@ -90,7 +90,7 @@ const mouse = Mouse.create(playground);
 const mouseConstraint = MouseConstraint.create(engine, {
     mouse,
     constraint: {
-        stiffness: 0.2,
+        stiffness: 0.5,
         render: {
             visible: false
         }
@@ -140,42 +140,15 @@ balls.forEach(ball => {
     ball.setAttribute("draggable", "false");
 });
 
-let lastMotionCheck = 0;
-Events.on(engine, "beforeUpdate", event => {
-    bodies.forEach(({ body }) => capSpeed(body));
-
-    if (event.timestamp - lastMotionCheck < 1000) return;
-    lastMotionCheck = event.timestamp;
-
+Events.on(engine, "beforeUpdate", () => {
     bodies.forEach(({ body }) => {
-        if (mouseConstraint.body === body) return;
-        const speed = Math.hypot(body.velocity.x, body.velocity.y);
-        if (speed < 1.2) {
-            const angle = Math.random() * Math.PI * 2;
-            Body.setVelocity(body, {
-                x: Math.cos(angle) * 2.5,
-                y: Math.sin(angle) * 2.5
-            });
-        }
+        if (mouseConstraint.body !== body) capSpeed(body);
     });
 });
 
 Events.on(engine, "afterUpdate", () => {
-    bodies.forEach(({ body, element, radius }) => {
-        capSpeed(body);
-
-        const x = Math.max(radius, Math.min(width - radius, body.position.x));
-        const y = Math.max(radius, Math.min(height - radius, body.position.y));
-        const hitVerticalWall = x !== body.position.x;
-        const hitHorizontalWall = y !== body.position.y;
-        if (hitVerticalWall || hitHorizontalWall) {
-            Body.setPosition(body, { x, y });
-            Body.setVelocity(body, {
-                x: hitVerticalWall ? -body.velocity.x : body.velocity.x,
-                y: hitHorizontalWall ? -body.velocity.y : body.velocity.y
-            });
-        }
-
+    bodies.forEach(({ body, element }) => {
+        if (mouseConstraint.body !== body) capSpeed(body);
         element.style.left = `${body.position.x}px`;
         element.style.top = `${body.position.y}px`;
         element.style.transform = "translate(-50%, -50%)";
