@@ -218,5 +218,6 @@ window.addEventListener("resize", () => {
     resizeTimer = setTimeout(updateWalls, 100);
 });
 
+playground.classList.add("physics-enabled");
 const runner = Runner.create();
 Runner.run(runner, engine);
