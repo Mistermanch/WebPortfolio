@@ -14,7 +14,9 @@ const engine = Engine.create();
 engine.world.gravity.y = 0;
 const balls = document.querySelectorAll(".ball");
 const initialSpeed = 2.5;
+const maxThrowSpeed = 12;
 const bodies = [];
+const launchedBodies = new Set();
 let walls = [];
 let width = playground.clientWidth;
 let height = playground.clientHeight;
@@ -101,15 +103,27 @@ Composite.add(engine.world, mouseConstraint);
 
 let pointerStart = null;
 let draggedBall = null;
+let pointerSamples = [];
+let didDragGesture = false;
+
+function recordPointerPosition(event) {
+    const now = performance.now();
+    pointerSamples.push({ x: event.clientX, y: event.clientY, time: now });
+    pointerSamples = pointerSamples.filter(sample => now - sample.time <= 100);
+}
 
 playground.addEventListener("pointerdown", event => {
     const ball = event.target.closest(".ball");
     pointerStart = ball ? { x: event.clientX, y: event.clientY, ball } : null;
     draggedBall = null;
+    didDragGesture = false;
+    pointerSamples = [];
+    if (pointerStart) recordPointerPosition(event);
 });
 
 window.addEventListener("pointermove", event => {
     if (!pointerStart) return;
+    recordPointerPosition(event);
 
     const distance = Math.hypot(
         event.clientX - pointerStart.x,
@@ -117,7 +131,34 @@ window.addEventListener("pointermove", event => {
     );
     if (distance > 6) {
         draggedBall = pointerStart.ball;
+        didDragGesture = true;
     }
+});
+
+Events.on(mouseConstraint, "enddrag", ({ body }) => {
+    if (!didDragGesture || !body) return;
+    didDragGesture = false;
+
+    const start = pointerSamples[0];
+    const end = pointerSamples[pointerSamples.length - 1];
+    if (start && end && end.time > start.time) {
+        const elapsed = end.time - start.time;
+        const deltaX = end.x - start.x;
+        const deltaY = end.y - start.y;
+        const gestureSpeed = Math.hypot(deltaX, deltaY) / elapsed * 16.67 * 0.6;
+        const speed = Math.min(maxThrowSpeed, Math.max(initialSpeed, gestureSpeed));
+        const distance = Math.hypot(deltaX, deltaY);
+
+        if (distance > 0) {
+            Body.setVelocity(body, {
+                x: deltaX / distance * speed,
+                y: deltaY / distance * speed
+            });
+            launchedBodies.add(body);
+        }
+    }
+
+    pointerSamples = [];
 });
 
 window.addEventListener("pointerup", () => {
@@ -142,13 +183,29 @@ balls.forEach(ball => {
 
 Events.on(engine, "beforeUpdate", () => {
     bodies.forEach(({ body }) => {
-        if (mouseConstraint.body !== body) capSpeed(body);
+        if (mouseConstraint.body === body) return;
+
+        if (launchedBodies.has(body)) {
+            const speed = Math.hypot(body.velocity.x, body.velocity.y);
+            if (speed > initialSpeed) {
+                const reducedSpeed = Math.max(initialSpeed, speed * 0.98);
+                Body.setVelocity(body, {
+                    x: body.velocity.x * reducedSpeed / speed,
+                    y: body.velocity.y * reducedSpeed / speed
+                });
+            } else {
+                launchedBodies.delete(body);
+                capSpeed(body);
+            }
+        } else {
+            capSpeed(body);
+        }
     });
 });
 
 Events.on(engine, "afterUpdate", () => {
     bodies.forEach(({ body, element }) => {
-        if (mouseConstraint.body !== body) capSpeed(body);
+        if (mouseConstraint.body !== body && !launchedBodies.has(body)) capSpeed(body);
         element.style.left = `${body.position.x}px`;
         element.style.top = `${body.position.y}px`;
         element.style.transform = "translate(-50%, -50%)";
